@@ -48,7 +48,7 @@ export const submitContactForm = async (formData: any) => {
       EMAILJS_CONFIG.SERVICE_ID,
       EMAILJS_CONFIG.CONTACT_TEMPLATE_ID,
       {
-        to_email: 'jagger@onmygrind.agency', 
+        to_email: 'andre@onmygrind.agency', 
         from_name: formData.name,
         from_email: formData.email,
         message: formData.message,

@@ -371,20 +371,20 @@ const ExpandedProducer = ({ producer, onClose }: {
     if (url.includes('/playlist/')) {
       const parts = url.split('/');
       const playlistId = parts[parts.length - 1];
-      return `https://open.spotify.com/embed/playlist/${playlistId}?utm_source=generator&theme=0`;
+      return `https://open.spotify.com/embed/playlist/${playlistId}?utm_source=generator&theme=0&size=large`;
     }
     
     // Handle artist URLs
     if (url.includes('/artist/')) {
       const parts = url.split('/');
       const artistId = parts[parts.length - 1];
-      return `https://open.spotify.com/embed/artist/${artistId}?utm_source=generator&theme=0&view=coverart`;
+      return `https://open.spotify.com/embed/artist/${artistId}?utm_source=generator&theme=0&view=coverart&size=large`;
     }
     
     // Fallback for other URL types
     const parts = url.split('/');
     const id = parts[parts.length - 1];
-    return `https://open.spotify.com/embed/artist/${id}?utm_source=generator&theme=0&view=coverart`;
+    return `https://open.spotify.com/embed/artist/${id}?utm_source=generator&theme=0&view=coverart&size=large`;
   };
 
   // Handle toggling discography with animation
@@ -543,17 +543,17 @@ const ExpandedProducer = ({ producer, onClose }: {
             ref={discographyRef}
             className="overflow-hidden transition-all duration-400 ease-out"
             style={{ 
-              height: showDiscography ? (discographyVisible ? '336px' : '0') : '0',
+              height: showDiscography ? (discographyVisible ? '400px' : '0') : '0',
               opacity: discographyVisible ? 1 : 0,
               visibility: showDiscography ? 'visible' : 'hidden',
             }}
           >
-            <div className="p-8 pt-0 w-full transform transition-transform duration-400 ease-out"
+            <div className="p-4 md:p-8 pt-0 w-full transform transition-transform duration-400 ease-out"
               style={{
                 transform: discographyVisible ? 'translateY(0)' : 'translateY(-40px)',
               }}
             >
-              <div className="w-full rounded-lg overflow-hidden" style={{ height: "280px" }}>
+              <div className="w-full rounded-lg overflow-hidden" style={{ height: "350px", minHeight: "350px" }}>
                 <iframe
                   src={getSpotifyEmbedUrl()}
                   width="100%"
@@ -565,6 +565,7 @@ const ExpandedProducer = ({ producer, onClose }: {
                     borderRadius: "12px",
                     transition: "opacity 0.4s ease-out",
                     opacity: discographyVisible ? 1 : 0,
+                    minHeight: "350px",
                   }}
                 ></iframe>
               </div>
