@@ -52,6 +52,7 @@ function App() {
             <Route path="/booking/:service" element={<Booking />} />
             <Route path="/booking" element={<Booking />} />
             <Route path="/" element={<Producers />} />
+            <Route path="*" element={<Producers />} />
           </Routes>
 
           {/* Footer */}

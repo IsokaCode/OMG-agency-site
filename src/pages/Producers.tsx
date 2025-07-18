@@ -271,8 +271,10 @@ const PentagonImage = ({ producer, delay, onSelect }: {
             display: 'block',
             transition: 'all 0.3s ease, opacity 0.5s ease-in',
             opacity: isContentLoaded ? 1 : 0,
-            // PentagonImage image filter
-            filter: `${isHovered ? 'brightness(1.2) contrast(1.1)' : 'brightness(1.1) contrast(1.05)'}`,
+            // PentagonImage image filter - black and white by default, color on hover
+            filter: isHovered 
+              ? 'brightness(1.2) contrast(1.1)' 
+              : 'grayscale(100%) brightness(1.1) contrast(1.05)',
             transform: `rotate(180deg) scale(${producer.positionSettings?.scale || 1})`,
             objectFit: 'cover',
             objectPosition: producer.positionSettings?.pentagon || 'center',
@@ -331,6 +333,7 @@ const ExpandedProducer = ({ producer, onClose }: {
   const [showDiscography, setShowDiscography] = useState(false);
   const [discographyVisible, setDiscographyVisible] = useState(false);
   const [showMoreBio, setShowMoreBio] = useState(false);
+  const [isImageHovered, setIsImageHovered] = useState(false);
   const discographyRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -426,16 +429,21 @@ const ExpandedProducer = ({ producer, onClose }: {
                   clipPath: 'polygon(50% 0%, 100% 60%, 85% 85%, 15% 85%, 0% 60%)',
                   transform: 'scale(0.9) rotate(180deg)',
                 }}
+                onMouseEnter={() => setIsImageHovered(true)}
+                onMouseLeave={() => setIsImageHovered(false)}
               >
                 <img
                   src={producer.image}
                   alt={producer.name}
                   className="w-full h-full object-cover"
                   style={{
-                    // ExpandedProducer image filter
-                    filter: `brightness(1.1) contrast(1.05)`,
+                    // ExpandedProducer image filter - black and white by default, color on hover
+                    filter: isImageHovered 
+                      ? 'brightness(1.2) contrast(1.1)' 
+                      : 'grayscale(100%) brightness(1.1) contrast(1.05)',
                     transform: `scale(${producer.positionSettings?.scale || 1}) rotate(180deg)`,
                     objectPosition: producer.positionSettings?.expanded || 'center',
+                    transition: 'filter 0.3s ease',
                   }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-neutral-900/20 to-transparent" />
