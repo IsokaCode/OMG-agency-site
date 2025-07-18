@@ -415,7 +415,7 @@ const ExpandedProducer = ({ producer, onClose }: {
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-white/80 hover:text-white z-10"
+          className="absolute top-4 right-4 text-white hover:text-white/80 z-20 bg-black/50 hover:bg-black/70 rounded-full p-2 transition-all duration-200 shadow-lg"
         >
           <X size={24} />
         </button>
@@ -578,7 +578,7 @@ const ExpandedProducer = ({ producer, onClose }: {
           <div className="relative w-full max-w-2xl bg-neutral-900/80 rounded-2xl overflow-y-auto max-h-[90vh] my-8" style={{ animation: 'scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}>
             <button
               onClick={() => setShowMoreBio(false)}
-              className="absolute top-4 right-4 text-white/80 hover:text-white z-10"
+              className="absolute top-4 right-4 text-white hover:text-white/80 z-20 bg-black/50 hover:bg-black/70 rounded-full p-2 transition-all duration-200 shadow-lg"
             >
               <X size={24} />
             </button>
