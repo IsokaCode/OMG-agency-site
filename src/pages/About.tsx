@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PageBackground from '../components/PageBackground';
+import andreImage from '../assets/andre OMG AGENCY.webp';
 
 const About = () => {
   const [showBioModal, setShowBioModal] = useState(false);
@@ -57,10 +58,10 @@ const About = () => {
             >
               <div className="shimmer-overlay"></div>
               <img 
-                src=" " 
-                alt="Studio Session" 
+                src={andreImage} 
+                alt="Andre - OMG Agency Founder" 
                 className="w-full h-full object-cover transform rotate-180"
-                style={{ transform: 'rotate(180deg) scale(0.95)', objectPosition: 'center 20%' }}
+                style={{ transform: 'rotate(180deg) scale(1.0)', objectPosition: 'center 80%' }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent transform rotate-180"></div>
             </div>

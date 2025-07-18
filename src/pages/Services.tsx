@@ -30,7 +30,7 @@ const services = [
           <li className="text-center">Strategic long-term and short-term career planning</li>
           <li className="text-center">Budgeting and Financial Oversight</li>
           <li className="text-center">Access to a comprehensive network of connections and key industry figures</li>
-          <li className="text-center">Logistical and personal problem solving that comes with manoeuvring this complex industry</li>
+          <li className="text-center">Logistical and personal problem solving that comes with maneuvering the complexities of the industry</li>
         </ul>
       </>
     )

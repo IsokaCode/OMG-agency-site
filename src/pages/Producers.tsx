@@ -26,8 +26,8 @@ const producers = [
       pentagon: 'center -51%',
       expanded: 'center -10%',
     },
-    bio: "Atlanta's top charting producer with multiple platinum records. Known for innovative trap sounds and unique collaborations.",
-    credits: ["Future", "Drake", "The Weeknd"],
+    bio: "TM88, managed by and in partnership with Will Dzombak [Taylor Gang] & Andre Mullings [Taylor Gang/OMG], has become one of the most prolific and influential producers in hip-hop.",
+    credits: ["Future", "Drake", "Young Thug"],
     social: {
       instagram: "https://www.instagram.com/tm88",
       youtube: "https://www.youtube.com/channel/UCGEq656KhhGYra4X1KCQ5aw",
@@ -190,10 +190,10 @@ const videos = [
   }
 ];
 
-const PentagonImage = ({ producer, delay, onSelect }: {
-  producer: typeof producers[0],
+const PentagonImage = ({ producer, delay, onSelect }: { 
+  producer: typeof producers[0], 
   delay: number,
-  onSelect: (producer: typeof producers[0]) => void
+  onSelect: (producer: typeof producers[0]) => void 
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -248,8 +248,8 @@ const PentagonImage = ({ producer, delay, onSelect }: {
           overflow: 'hidden',
           backfaceVisibility: 'hidden',
           background: 'linear-gradient(45deg, rgba(0,0,0,0.3), rgba(0,0,0,0.1))',
-          boxShadow: isHovered
-            ? '0 20px 30px rgba(0,0,0,0.5), 0 0 20px rgba(255,255,255,0.3), inset 0 0 15px rgba(255,255,255,0.2)'
+          boxShadow: isHovered 
+            ? '0 20px 30px rgba(0,0,0,0.5), 0 0 20px rgba(255,255,255,0.3), inset 0 0 15px rgba(255,255,255,0.2)' 
             : '0 10px 20px rgba(0,0,0,0.4), inset 0 0 10px rgba(255,255,255,0.1)',
           transition: 'all 0.3s ease-out',
         }}
@@ -269,7 +269,7 @@ const PentagonImage = ({ producer, delay, onSelect }: {
             objectPosition: producer.positionSettings?.pentagon || 'center',
           }}
         />
-        <div
+        <div 
           className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"
           style={{
             transition: 'opacity 0.3s ease',
@@ -303,6 +303,7 @@ const PentagonImage = ({ producer, delay, onSelect }: {
 
 // Add mapping of producer names to in-depth bios
 const producerBios: Record<string, string> = {
+  "TM88": `TM88, managed by and in partnership with Will Dzombak [Taylor Gang] & Andre Mullings [Taylor Gang/OMG], has become one of the most prolific and influential producers in hip-hop. "I always wanted to be involved in music in some kind of way" he remembers. Born in North Miami and raised in Atlanta, Bryan Lamar Simmons had an ear from the beginning. "I came up on Kriss Kross, Geto Boys and Michael Jackson," the 31-year-old says. "I used to record music off the radio, bring it to school and sell the tapes."\n\nThat hustle took him to the studio where he was inspired by a friend's dad to make beats. "His beats weren't that good," TM laughs, "but I wanted to figure this out." His cousin gifted him FL Studio and he made his first beat at 12. "I was like, 'Damn bro! I could be like Jazze Pha or Lil Jon!'" TM sold his first beat for a mere $40--for a local rapper at 18. In 2012, he notched his first industry placement with "Lurkin" for Waka Flocka Flame's Triple F Life. It was serendipity. The year prior, TM and Southside formed the production collective 808 Mafia and Waka happened to find the beat on the group's self-titled instrumental project online. "Waka grabbed the beat and went to the studio. That's how it went to the album. Waka looked out."\n\nThat relationship opened the door to the who's who of the South: Future, Gucci Mane and Rick Ross, to name a few. "Future played a big role in my career." The two linked through a mutual friend on Twitter and began work on 2013's Future Presents: F.B.G. The Movie. "I was really at home, struggling at the time. We had records out, but behind the scenes, I was struggling. Long story short, Future wanted to record that night." He sent 15 beats and was shocked to find the rapper blow through them. "I kid you not, he recorded to 15 beats in like two hours!"\n\nTM has since built an impressive discography of both superstars and rising rappers, including Drake ("Company"), Young Thug ("Danny Glover"), Wiz Khalifa ("Pull Up") and Travis Scott ("Nightcrawler"). "Creatively, I like to vibe with the artist. It helps to have a relationship. It makes the music way better," he explains of his process. "The way I hear the music is different from everybody else. It creates a strong bond." In 2017, he hit the commercial and critical jackpot with Lil Uzi Vert's "XO Tour Life." "Me and Uzi got a real good relationship," he says. "We give each other motivation."\n\nThat organic friendship turned into the song. "We were on FaceTime for like an hour, talking about other shit and that led to the song." With over 8 million in sales, TM is still stunned by its success. "I be so hard on myself. I want to make the best shit. Sometimes you already have the shit that you need."\n\nTM88 currently enlists a roster of producers under his label Crash Dummy Records. This Grammy-nominated collective of producers has proven to be a powerful force in the music industry, consistently shaping the sound of modern hip-hop. The label, along with TM88, has amassed Billboard-charting hits over the years, with placements on Heroes & Villains by Metro Boomin, God Did by DJ Khaled, I Never Liked You by Future, MUSIC by Playboi Carti, and more. TM88 has built a production empire, establishing himself as a true pioneer and innovator. "I transition my sound with the times," he says. "But I try to make sure I'm one of the leaders of the sound."`,
   "FYA MAN": `Grammy and Emmy award-winning producer, artist, and influencer Fya Man is a highly influential figure who has played a pivotal role in shaping modern hip-hop. A native of Chicago, Fya Man crafts a unique sound, blending futuristic and old-school melodies. His contributions extend beyond music, significantly impacting fashion, film, and television. Fya Man's ability to expand and redefine the boundaries of different cultural sub-sections solidifies his place across multiple industries.\n\nFya Man is perhaps best known for his dynamic collaborations with Kanye West, contributing to the groundbreaking albums Donda and Ye. He crafted the sound for standout tracks like \"Everybody,\" \"Ok Ok,\" and \"Pure Souls.\" His work with Kanye has cemented him as a key figure in contemporary music production. In addition to his collaborations with Kanye, Fya Man has been instrumental in the rise of the Chicago Drill movement, working with prominent artists like Lil Durk to help define the genre's hard-hitting sound. His production on tracks such as \"Do It Again\" by NLE Choppa further showcases his versatility and ability to create hits across different sub-genres of rap.\n\nFya Man's ability to collaborate with a multitude of producers is evident in his contributions to Vic Mensa’s album The Autobiography, where he worked alongside Pharrell Williams. Beyond music, Fya Man earned his Emmy award for his role in CNN’s United Shades of America. He has also notably worked with Jay-Z on a Budweiser commercial. Fya Man's contributions have not only shaped the sound of Chicago but have also left an indelible mark on the broader landscape of hip-hop.`,
   "LIL88": `Lil88 is a trailblazing producer from Atlanta, known for shaping the sound of modern trap and hip-hop. Associated with established labels like 808 Mafia, Crash Dummy Records, and Opium, Lil88’s innovative production style separates him from the rest. His ability to blend hard-hitting beats with ambient sounds has earned him production credits for artists such as Future, Playboi Carti, Ken Carson, Destroy Lonely, and Homixide Gang.\n\nBeyond producing, Lil88 has displayed his versatility as a DJ for Ken Carson and Destroy Lonely. Some of his standout tracks include Playboi Carti’s hit \"Beno!\", Ken Carson’s \"ss,\" and the powerful collaboration \"Ain't No Love\" featuring Metro Boomin and Future. Recently, Lil88 continued to push sonic boundaries with Destroy Lonely’s “Love Last Forever,” and Ken Carson’s “More Chaos,” a high-energy follow-up to his breakout album “A Great Chaos”. Lil88 also played a pivotal role in the long-awaited album “Eternal Atake 2” by Lil Uzi Vert.\n\nLil88’s star power ascended further with his contributions to Future and Metro Boomin’s chart-topping anthems, \"We Don’t Trust You\" and \"We Still Don’t Trust You,\" both of which soared to #1 on the Billboard Hot 100. With a blend of visionary production and an undeniable influence on the new generation of trap music, Lil88 continues to shape the future of the genre.`,
   "DRIPPY": `Atlanta-based producer Drippy is an emergent talent making waves on the music scene. Known for his distinctive production style, Drippy has quickly gained recognition through landing the #8 spot on the Triller x Billboard chart with his popular remix of \"Spaz” by Mr. 2-17. This accomplishment has cemented his status as a rising star in the industry. Drippy’s standout work includes producing tracks like “Wyb Quan” and “Unlimited Budget” on the late Rich Homie Quan's acclaimed album Forever Goin In. Inspired by the vibrant music culture of Atlanta, Drippy’s career is only beginning, but his creative vision and dedication to the craft hint at an exciting future.`,
@@ -668,12 +669,21 @@ const MediaPentagon = () => {
 
 const ScrollingBanner = () => (
   <div className="bg-neutral-800/50 backdrop-blur-sm py-6 overflow-hidden whitespace-nowrap relative border-y border-neutral-700">
-    <div className="animate-scroll inline-flex" style={{ width: '200%' }}>
-      <span className="text-white text-4xl font-bold tracking-[0.2em] px-8 uppercase inline-block w-1/2">
-        Representing the Biggest in the Game!!
+    <div 
+      className="animate-scroll inline-flex" 
+      style={{ 
+        width: '300%',
+        transform: 'translateZ(0)', // Force hardware acceleration
+      }}
+    >
+      <span className="text-white text-3xl font-bold tracking-[0.15em] px-8 uppercase inline-block w-1/3">
+        Representing the Biggest in the Game!! - SHINERS WORLD SHINERS WAY! -
       </span>
-      <span className="text-white text-4xl font-bold tracking-[0.2em] px-8 uppercase inline-block w-1/2">
-        Representing the Biggest in the Game!!
+      <span className="text-white text-3xl font-bold tracking-[0.15em] px-8 uppercase inline-block w-1/3">
+        Representing the Biggest in the Game!! - SHINERS WORLD SHINERS WAY! -
+      </span>
+      <span className="text-white text-3xl font-bold tracking-[0.15em] px-8 uppercase inline-block w-1/3">
+        Representing the Biggest in the Game!! - SHINERS WORLD SHINERS WAY! -
       </span>
     </div>
   </div>

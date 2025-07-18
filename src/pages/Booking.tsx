@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { Calendar, Clock, Music, DollarSign } from 'lucide-react';
+import { Calendar, Clock, Music, DollarSign, User, Mail, Phone } from 'lucide-react';
 import PageBackground from '../components/PageBackground';
+import { submitBookingForm } from '../lib/emailjs';
 
 interface BookingState {
   producer?: {
@@ -20,6 +21,9 @@ const Booking = () => {
   const producer = state?.producer || { name: "a Producer", image: "" };
 
   const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
     date: "",
     time: "",
     hours: "4",
@@ -27,14 +31,46 @@ const Booking = () => {
     details: ""
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (service) {
-      alert(`Booking requested! We'll contact you to confirm your request for ${service.replace(/-/g, ' ')}`);
-    } else {
-    alert(`Booking requested! We'll contact you to confirm your session with ${producer.name}`);
+    setIsSubmitting(true);
+    setSubmitMessage("");
+
+    try {
+      const bookingData = {
+        ...formData,
+        producerName: producer.name,
+        serviceType: service ? service.replace(/-/g, ' ') : 'Producer Session'
+      };
+
+      const result = await submitBookingForm(bookingData);
+      
+      if (result.success) {
+        setSubmitMessage(result.message);
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          date: "",
+          time: "",
+          hours: "4",
+          projectType: "single",
+          details: ""
+        });
+        setTimeout(() => {
+          navigate('/');
+        }, 2000);
+      } else {
+        setSubmitMessage(result.message);
+      }
+    } catch (error) {
+      setSubmitMessage("An error occurred. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
-    navigate('/');
   };
 
   return (
@@ -54,6 +90,54 @@ const Booking = () => {
 
           <div className="bg-neutral-800/50 rounded-xl p-6 backdrop-blur-sm">
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Contact Information */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                    <div className="flex items-center gap-2">
+                      <User className="w-4 h-4" />
+                      Full Name *
+                    </div>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="w-full bg-neutral-700/50 border border-neutral-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-white/20"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                    <div className="flex items-center gap-2">
+                      <Mail className="w-4 h-4" />
+                      Email *
+                    </div>
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="w-full bg-neutral-700/50 border border-neutral-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-white/20"
+                  />
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <div className="flex items-center gap-2">
+                    <Phone className="w-4 h-4" />
+                    Phone Number
+                  </div>
+                </label>
+                <input
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  className="w-full bg-neutral-700/50 border border-neutral-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-white/20"
+                />
+              </div>
+
               {!service && (
                 <>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -140,13 +224,33 @@ const Booking = () => {
                 ></textarea>
               </div>
 
+              {submitMessage && (
+                <div className={`p-4 rounded-lg text-center ${
+                  submitMessage.includes('successfully') 
+                    ? 'bg-green-500/20 text-green-300 border border-green-500/30' 
+                    : 'bg-red-500/20 text-red-300 border border-red-500/30'
+                }`}>
+                  {submitMessage}
+                </div>
+              )}
+
               <div className="pt-4">
                 <button
                   type="submit"
-                  className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-white/10 text-white rounded-full hover:bg-white/20 transition-colors duration-300"
+                  disabled={isSubmitting}
+                  className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-white/10 text-white rounded-full hover:bg-white/20 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <DollarSign className="w-5 h-5" />
-                  Request Booking
+                  {isSubmitting ? (
+                    <>
+                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <DollarSign className="w-5 h-5" />
+                      Request Booking
+                    </>
+                  )}
                 </button>
               </div>
             </form>
