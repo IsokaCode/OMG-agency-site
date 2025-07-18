@@ -27,7 +27,18 @@ const SoundCloudPlayer: React.FC<SoundCloudPlayerProps> = ({ playlistUrl, isVisi
           setIsPlaying(data.args[0]?.playbackStatus === 'playing');
         } else if (data.method === 'getPaused') {
           // Track pause state
-          setIsPlaying(!data.args[0]);
+          const isPaused = data.args[0];
+          setIsPlaying(!isPaused);
+          
+          // If it's paused and we want it to play, force play
+          if (isPaused && isVisible) {
+            setTimeout(() => {
+              iframeRef.current?.contentWindow?.postMessage(
+                JSON.stringify({ method: 'play' }),
+                'https://w.soundcloud.com'
+              );
+            }, 500);
+          }
         }
       } catch (error) {
         // Ignore parsing errors
@@ -47,12 +58,21 @@ const SoundCloudPlayer: React.FC<SoundCloudPlayerProps> = ({ playlistUrl, isVisi
       iframe.onload = () => {
         setIsIframeReady(true);
         
-        // Get initial state from iframe
+        // Get initial state from iframe and ensure it starts playing
         setTimeout(() => {
           iframe.contentWindow?.postMessage(
             JSON.stringify({ method: 'getPaused' }),
             'https://w.soundcloud.com'
           );
+          
+          // Force play after a short delay to ensure playlist starts
+          setTimeout(() => {
+            iframe.contentWindow?.postMessage(
+              JSON.stringify({ method: 'play' }),
+              'https://w.soundcloud.com'
+            );
+            setIsPlaying(true);
+          }, 1500);
         }, 1000);
       };
     }
@@ -108,7 +128,7 @@ const SoundCloudPlayer: React.FC<SoundCloudPlayerProps> = ({ playlistUrl, isVisi
           scrolling="no"
           frameBorder="no"
           allow="autoplay"
-          src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/jagger-rosenthal/sets/omg-playlist&color=%23ff5500&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false"
+          src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/jagger-rosenthal/sets/omg-playlist&color=%23ff5500&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false&start_track=0"
         />
       </div>
 

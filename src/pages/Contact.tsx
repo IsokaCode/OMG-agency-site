@@ -53,7 +53,7 @@ const Contact: React.FC = () => {
               <div className="space-y-4">
                 <div className="flex items-center text-gray-300">
                   <Mail className="w-6 h-6 mr-3" />
-                  <span>jagger@onmygrind.agency</span>
+                  <span>andre@onmygrind.agency</span>
                 </div>
                 <div className="flex items-center text-gray-300">
                   <Instagram className="w-6 h-6 mr-3" />

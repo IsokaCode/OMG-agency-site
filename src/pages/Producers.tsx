@@ -402,13 +402,13 @@ const ExpandedProducer = ({ producer, onClose }: {
 
   return (
     <div 
-      className="fixed inset-0 bg-black/90 backdrop-blur-lg z-50 flex items-center justify-center p-8"
+      className="fixed inset-0 bg-black/90 backdrop-blur-lg z-50 flex items-center justify-center p-4 md:p-8 overflow-y-auto"
       style={{
         animation: 'fadeIn 0.3s ease-out'
       }}
     >
       <div 
-        className="relative w-full max-w-4xl bg-neutral-900/80 rounded-2xl overflow-hidden"
+        className="relative w-full max-w-4xl bg-neutral-900/80 rounded-2xl overflow-hidden my-8"
         style={{
           animation: 'scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)'
         }}
@@ -420,7 +420,7 @@ const ExpandedProducer = ({ producer, onClose }: {
           <X size={24} />
         </button>
 
-        <div className="flex flex-col">
+        <div className="flex flex-col max-h-[90vh] md:max-h-none overflow-y-auto">
           <div className="flex flex-col md:flex-row">
             <div className="w-full md:w-1/2 relative aspect-square">
               <div
@@ -574,15 +574,15 @@ const ExpandedProducer = ({ producer, onClose }: {
       </div>
       {/* More Bio Modal */}
       {showMoreBio && producerBios[producer.name] && (
-        <div className="fixed inset-0 bg-black/90 backdrop-blur-lg z-50 flex items-center justify-center p-8" style={{ animation: 'fadeIn 0.3s ease-out' }}>
-          <div className="relative w-full max-w-2xl bg-neutral-900/80 rounded-2xl overflow-y-auto max-h-[90vh]" style={{ animation: 'scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}>
+        <div className="fixed inset-0 bg-black/90 backdrop-blur-lg z-50 flex items-center justify-center p-4 md:p-8 overflow-y-auto" style={{ animation: 'fadeIn 0.3s ease-out' }}>
+          <div className="relative w-full max-w-2xl bg-neutral-900/80 rounded-2xl overflow-y-auto max-h-[90vh] my-8" style={{ animation: 'scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}>
             <button
               onClick={() => setShowMoreBio(false)}
               className="absolute top-4 right-4 text-white/80 hover:text-white z-10"
             >
               <X size={24} />
             </button>
-            <div className="p-8 text-white overflow-y-auto max-h-[80vh] text-center whitespace-pre-line">
+            <div className="p-8 text-white overflow-y-auto max-h-[calc(90vh-4rem)] text-center whitespace-pre-line">
               <h2 className="text-3xl font-bold mb-6">{producer.name}</h2>
               <p>{producerBios[producer.name]}</p>
             </div>

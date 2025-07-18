@@ -184,10 +184,10 @@ const Booking = () => {
                   onChange={(e) => setFormData({ ...formData, hours: e.target.value })}
                   className="w-full bg-neutral-700/50 border border-neutral-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-white/20"
                 >
-                  <option value="2">2 Hours ($400)</option>
-                  <option value="4">4 Hours ($700)</option>
-                  <option value="8">8 Hours ($1200)</option>
-                  <option value="12">12 Hours ($1600)</option>
+                  <option value="2">2 Hours</option>
+                  <option value="4">4 Hours</option>
+                  <option value="8">8 Hours</option>
+                  <option value="12">12 Hours</option>
                 </select>
               </div>
               <div>
