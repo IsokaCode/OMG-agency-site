@@ -96,6 +96,44 @@ const Videos = () => {
 
   return (
     <PageBackground>
+      <div className="flex flex-col items-center justify-center min-h-screen text-white">
+        {/* OMG Logo */}
+        <div className="mb-12">
+          <img
+            src="/omg%20music%20agency%20animation.gif"
+            alt="OMG Logo"
+            className="mx-auto"
+            style={{ width: '300px', height: 'auto' }}
+          />
+        </div>
+
+        {/* YouTube Video */}
+        <div className="w-full max-w-4xl px-4 mb-8">
+          <div className="aspect-video w-full rounded-lg overflow-hidden shadow-2xl">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/HoSz5xtd8lI"
+              title="OMG Agency Video"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full"
+            ></iframe>
+          </div>
+        </div>
+
+        {/* More Coming Soon Text */}
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-white mb-4">MORE COMING SOON</h2>
+          <p className="text-xl text-neutral-400">
+            We're cooking up something special. Stay tuned!
+          </p>
+        </div>
+      </div>
+
+      {/* Original Videos Content - Commented out for future use */}
+      {/*
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <h1 className="text-4xl font-bold text-white mb-16 text-center tracking-wider">VIDEOS</h1>
         
@@ -158,6 +196,7 @@ const Videos = () => {
           ))}
         </div>
       </div>
+      */}
       
       {selectedVideo && (
         <VideoPlayerModal 

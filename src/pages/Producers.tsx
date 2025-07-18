@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { Menu, X, Play, Instagram, Youtube, Music2, Radio } from 'lucide-react';
+import { Menu, X, Play, Instagram, Youtube, Music2, Radio, Brain } from 'lucide-react';
 import PageBackground from '../components/PageBackground';
 import metalicRoomBg from '../assets/metalic-room-background.png';
 
@@ -32,7 +32,8 @@ const producers = [
       instagram: "https://www.instagram.com/tm88",
       youtube: "https://www.youtube.com/channel/UCGEq656KhhGYra4X1KCQ5aw",
       spotify: "https://open.spotify.com/artist/5RMUeKq0dZxg9RHE1f0B9P",
-      soundcloud: "https://soundcloud.com/tm88"
+      soundcloud: "https://soundcloud.com/tm88",
+      genius: "https://genius.com/artists/Tm88"
     }
   },
   {
@@ -45,8 +46,9 @@ const producers = [
     social: {
       instagram: "https://www.instagram.com/1lil88/?hl=en",
       youtube: "https://www.youtube.com/watch?v=uxNEsITxPps",
-      spotify: "https://artists.spotify.com/songwriter/4XA4AI3DUIlSaG0DSOKqnJ",
-      soundcloud: "https://soundcloud.com/lil8800"
+      spotify: "https://open.spotify.com/playlist/37i9dQZF1EFLxJsn4ZJhDD",
+      soundcloud: "https://soundcloud.com/lil8800",
+      genius: "https://genius.com/artists/Lil-88"
     }
   },
   {
@@ -59,8 +61,9 @@ const producers = [
     social: {
       instagram: "https://www.instagram.com/tweektune/?hl=en",
       youtube: "https://www.youtube.com/@tweektune1",
-      spotify: "https://open.spotify.com/artist/4KXcvELWll88YwP38UJqaz",
-      soundcloud: "https://soundcloud.com/tweektune"
+      spotify: "https://open.spotify.com/playlist/4fMK3r4dOzLLho5jvwEUQV",
+      soundcloud: "https://soundcloud.com/tweektune",
+      genius: "https://genius.com/artists/Tweek-tune"
     }
   },
   {
@@ -74,7 +77,8 @@ const producers = [
       instagram: "https://www.instagram.com/fyamanhof/?hl=en",
       youtube: "https://www.youtube.com/@FyaManHOF",
       spotify: "https://open.spotify.com/artist/644ezI82brXn85lO9kI6ab",
-      soundcloud: "https://soundcloud.com/fyamanhof"
+      soundcloud: "https://soundcloud.com/fyamanhof",
+      genius: "https://genius.com/artists/Fya-man"
     }
   },
   {
@@ -93,7 +97,8 @@ const producers = [
       instagram: "https://instagram.com/dantexsmith",
       youtube: "https://www.youtube.com/@DantexSmith",
       spotify: "https://open.spotify.com/artist/1mpbkq7xLsVwydz4vgcI0r",
-      soundcloud: "https://soundcloud.com/dantexsmith"
+      soundcloud: "https://soundcloud.com/dantexsmith",
+      genius: "https://genius.com/artists/Dante-smith-c-d"
     }
   },
   {
@@ -107,7 +112,8 @@ const producers = [
       instagram: "https://www.instagram.com/nuzzoworld/?hl=en",
       youtube: "https://www.youtube.com/@nuzzoworld",
       spotify: "https://open.spotify.com/artist/1TKmLwjmeEQJdfSbYMqvis",
-      soundcloud: "https://soundcloud.com/dinuzzotheartist"
+      soundcloud: "https://soundcloud.com/dinuzzotheartist",
+      genius: "https://genius.com/artists/Dinuzzo"
     }
   },
   {
@@ -125,8 +131,9 @@ const producers = [
     social: {
       instagram: "https://www.instagram.com/drippyprod",
       youtube: "https://youtube.com/@nova",
-      spotify: " ",
-      soundcloud: " "
+      spotify: "https://open.spotify.com/playlist/0MBpE0a6rXj7NGWijV81Zx",
+      soundcloud: " ",
+      genius: "https://genius.com/artists/Drippy"
     }
   },
   {
@@ -144,8 +151,9 @@ const producers = [
     social: {
       instagram: "https://www.instagram.com/ejmacc_/?hl=en",
       youtube: " ",
-      spotify: " ",
-      soundcloud: " "
+      spotify: "https://open.spotify.com/playlist/6MFjar03oLI4DROW9ECdro",
+      soundcloud: " ",
+      genius: "https://genius.com/artists/Ejmacc"
     }
   },
   {
@@ -163,8 +171,9 @@ const producers = [
     social: {
       instagram: "https://www.instagram.com/einthismf/?hl=en",
       youtube: " ",
-      spotify: " ",
-      soundcloud: " "
+      spotify: "https://open.spotify.com/playlist/3u5nGGd4WmiISU6KPgrQBc",
+      soundcloud: " ",
+      genius: "https://genius.com/artists/Einthismf"
     }
   }
 ];
@@ -354,9 +363,25 @@ const ExpandedProducer = ({ producer, onClose }: {
     }
     
     const url = producer.social.spotify;
+    
+    // Check if it's a playlist URL
+    if (url.includes('/playlist/')) {
+      const parts = url.split('/');
+      const playlistId = parts[parts.length - 1];
+      return `https://open.spotify.com/embed/playlist/${playlistId}?utm_source=generator&theme=0`;
+    }
+    
+    // Handle artist URLs
+    if (url.includes('/artist/')) {
+      const parts = url.split('/');
+      const artistId = parts[parts.length - 1];
+      return `https://open.spotify.com/embed/artist/${artistId}?utm_source=generator&theme=0&view=coverart`;
+    }
+    
+    // Fallback for other URL types
     const parts = url.split('/');
-    const artistId = parts[parts.length - 1];
-    return `https://open.spotify.com/embed/artist/${artistId}?utm_source=generator&theme=0&view=coverart`;
+    const id = parts[parts.length - 1];
+    return `https://open.spotify.com/embed/artist/${id}?utm_source=generator&theme=0&view=coverart`;
   };
 
   // Handle toggling discography with animation
@@ -452,6 +477,14 @@ const ExpandedProducer = ({ producer, onClose }: {
                   className="text-white/80 hover:text-white transition-colors"
                 >
                   <Radio size={28} />
+                </a>
+                <a 
+                  href={producer.social.genius} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-white/80 hover:text-white transition-colors"
+                >
+                  <Brain size={28} />
                 </a>
               </div>
               
@@ -677,13 +710,13 @@ const ScrollingBanner = () => (
       }}
     >
       <span className="text-white text-3xl font-bold tracking-[0.15em] px-8 uppercase inline-block w-1/3">
-        Representing the Biggest in the Game!! - SHINERS WORLD SHINERS WAY! -
+        Representing the Biggest in the Game SHINERS WORLD SHINERS WAY
       </span>
       <span className="text-white text-3xl font-bold tracking-[0.15em] px-8 uppercase inline-block w-1/3">
-        Representing the Biggest in the Game!! - SHINERS WORLD SHINERS WAY! -
+        Representing the Biggest in the Game SHINERS WORLD SHINERS WAY
       </span>
       <span className="text-white text-3xl font-bold tracking-[0.15em] px-8 uppercase inline-block w-1/3">
-        Representing the Biggest in the Game!! - SHINERS WORLD SHINERS WAY! -
+        Representing the Biggest in the Game SHINERS WORLD SHINERS WAY
       </span>
     </div>
   </div>

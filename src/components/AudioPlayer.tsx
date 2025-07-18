@@ -7,6 +7,7 @@ interface AudioPlayerProps {
 
 const AudioPlayer = ({ isTransitioning }: AudioPlayerProps) => {
   const [isMuted, setIsMuted] = useState(false);
+  const [hasUserInteracted, setHasUserInteracted] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -16,27 +17,55 @@ const AudioPlayer = ({ isTransitioning }: AudioPlayerProps) => {
       videoRef.current.volume = 0.3;
       videoRef.current.loop = true;
       
-      // Attempt autoplay with muted fallback for browsers that block unmuted autoplay
-      const playPromise = videoRef.current.play();
-      
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            // Autoplay started successfully
-            console.log('Audio started playing automatically');
-          })
-          .catch(error => {
-            // Autoplay failed - mute and try again
-            console.log('Autoplay prevented, trying muted', error);
-            if (videoRef.current) {
-              videoRef.current.muted = true;
-              setIsMuted(true);
-              videoRef.current.play().catch(e => console.error('Still failed to play:', e));
+      // Try to play unmuted first
+      const playUnmuted = async () => {
+        try {
+          await videoRef.current!.play();
+          console.log('Audio started playing automatically (unmuted)');
+          setIsMuted(false);
+        } catch (error) {
+          console.log('Autoplay prevented, trying muted', error);
+          // If unmuted autoplay fails, mute and try again
+          if (videoRef.current) {
+            videoRef.current.muted = true;
+            setIsMuted(true);
+            try {
+              await videoRef.current.play();
+              console.log('Audio started playing (muted)');
+            } catch (e) {
+              console.error('Still failed to play:', e);
             }
-          });
-      }
+          }
+        }
+      };
+
+      playUnmuted();
     }
   }, []);
+
+  // Handle user interaction to unmute audio
+  useEffect(() => {
+    const handleUserInteraction = () => {
+      if (!hasUserInteracted && videoRef.current && isMuted) {
+        setHasUserInteracted(true);
+        videoRef.current.muted = false;
+        setIsMuted(false);
+        console.log('Audio unmuted after user interaction');
+      }
+    };
+
+    // Listen for various user interactions
+    const events = ['click', 'touchstart', 'keydown', 'scroll'];
+    events.forEach(event => {
+      document.addEventListener(event, handleUserInteraction, { once: true });
+    });
+
+    return () => {
+      events.forEach(event => {
+        document.removeEventListener(event, handleUserInteraction);
+      });
+    };
+  }, [hasUserInteracted, isMuted]);
 
   useEffect(() => {
     if (videoRef.current && isTransitioning) {
@@ -54,6 +83,7 @@ const AudioPlayer = ({ isTransitioning }: AudioPlayerProps) => {
     if (videoRef.current) {
       videoRef.current.muted = !isMuted;
       setIsMuted(!isMuted);
+      setHasUserInteracted(true); // Mark as interacted when user manually toggles
     }
   };
 
@@ -73,6 +103,7 @@ const AudioPlayer = ({ isTransitioning }: AudioPlayerProps) => {
       <button
         onClick={toggleMute}
         className="fixed top-4 right-4 z-50 bg-black/50 backdrop-blur-sm p-3 rounded-full hover:bg-black/70 transition-colors duration-300"
+        title={isMuted ? "Unmute audio" : "Mute audio"}
       >
         {isMuted ? (
           <VolumeX className="w-6 h-6 text-white" />
