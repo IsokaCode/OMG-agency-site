@@ -700,27 +700,27 @@ const MediaPentagon = () => {
   );
 };
 
-const ScrollingBanner = () => (
-  <div className="bg-neutral-800/50 backdrop-blur-sm py-6 overflow-hidden whitespace-nowrap relative border-y border-neutral-700">
-    <div 
-      className="animate-scroll inline-flex" 
-      style={{ 
-        width: '300%',
-        transform: 'translateZ(0)', // Force hardware acceleration
-      }}
-    >
-      <span className="text-white text-3xl font-bold tracking-[0.15em] px-8 uppercase inline-block w-1/3">
-        Representing the Biggest in the Game SHINERS WORLD SHINERS WAY
-      </span>
-      <span className="text-white text-3xl font-bold tracking-[0.15em] px-8 uppercase inline-block w-1/3">
-        Representing the Biggest in the Game SHINERS WORLD SHINERS WAY
-      </span>
-      <span className="text-white text-3xl font-bold tracking-[0.15em] px-8 uppercase inline-block w-1/3">
-        Representing the Biggest in the Game SHINERS WORLD SHINERS WAY
-      </span>
-    </div>
-  </div>
-);
+// const ScrollingBanner = () => (
+//   <div className="bg-neutral-800/50 backdrop-blur-sm py-6 overflow-hidden whitespace-nowrap relative border-y border-neutral-700">
+//     <div 
+//       className="animate-scroll inline-flex" 
+//       style={{ 
+//         width: '300%',
+//         transform: 'translateZ(0)', // Force hardware acceleration
+//       }}
+//     >
+//       <span className="text-white text-2xl md:text-3xl font-bold tracking-[0.15em] px-4 md:px-8 uppercase inline-block w-1/3">
+//         REPRESENTING THE BIGGEST IN THE GAME
+//       </span>
+//       <span className="text-white text-2xl md:text-3xl font-bold tracking-[0.15em] px-4 md:px-8 uppercase inline-block w-1/3">
+//         REPRESENTING THE BIGGEST IN THE GAME 
+//       </span>
+//       <span className="text-white text-2xl md:text-3xl font-bold tracking-[0.15em] px-4 md:px-8 uppercase inline-block w-1/3">
+//         REPRESENTING THE BIGGEST IN THE GAME 
+//       </span>
+//     </div>
+//   </div>
+// );
 
 // Utility to create slugs from producer names
 const slugify = (name: string) =>
@@ -788,7 +788,7 @@ const Producers = () => {
 
   return (
     <PageBackground>
-      <ScrollingBanner />
+      {/* <ScrollingBanner /> */}
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <h1 className="text-5xl font-bold text-white mb-24 text-center tracking-wider">
           OUR PRODUCERS

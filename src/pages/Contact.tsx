@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, User } from 'lucide-react';
+import { Mail, Instagram, MapPin, User } from 'lucide-react';
 import PageBackground from '../components/PageBackground';
 import { submitContactForm } from '../lib/emailjs';
 
@@ -56,22 +56,20 @@ const Contact: React.FC = () => {
                   <span>jagger@onmygrind.agency</span>
                 </div>
                 <div className="flex items-center text-gray-300">
-                  <Phone className="w-6 h-6 mr-3" />
-                  <span>+1 (000) 000-000</span>
+                  <Instagram className="w-6 h-6 mr-3" />
+                  <a 
+                    href="https://www.instagram.com/onmygrindagency/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="hover:text-white transition-colors"
+                  >
+                    @onmygrindagency
+                  </a>
                 </div>
                 <div className="flex items-center text-gray-300">
                   <MapPin className="w-6 h-6 mr-3" />
-                  <span>123 xxxxxx, Atlanta, GA</span>
+                  <span>Atlanta, GA</span>
                 </div>
-              </div>
-            </div>
-
-            <div className="bg-neutral-800/50 p-6 rounded-lg backdrop-blur-sm">
-              <h2 className="text-2xl font-bold text-white mb-6">Studio Hours</h2>
-              <div className="space-y-2 text-gray-300">
-                <p>Monday - Friday: 10AM - 10PM</p>
-                <p>Saturday: 12PM - 8PM</p>
-                <p>Sunday: By Appointment</p>
               </div>
             </div>
           </div>
@@ -117,10 +115,7 @@ const Contact: React.FC = () => {
 
               <div>
                 <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-2">
-                  <div className="flex items-center gap-2">
-                    <Phone className="w-4 h-4" />
-                    Phone Number
-                  </div>
+                  Phone Number
                 </label>
                 <input
                   type="tel"

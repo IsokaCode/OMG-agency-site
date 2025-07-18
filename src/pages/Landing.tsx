@@ -1,8 +1,6 @@
 import React from 'react';
 import { Play } from 'lucide-react';
-import AudioPlayer from '../components/AudioPlayer';
 import metalicRoomBg from '../assets/metalic-room-background.png';
-
 
 interface LandingProps {
   onEnter: () => void;
@@ -12,8 +10,6 @@ interface LandingProps {
 const Landing = ({ onEnter, isTransitioning }: LandingProps) => {
   return (
     <div className="min-h-screen relative overflow-hidden">
-      <AudioPlayer isTransitioning={isTransitioning} />
-      
       {/* Background Image */}
       <div 
         className={`absolute inset-0 transition-opacity duration-1000 ${
