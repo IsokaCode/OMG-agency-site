@@ -52,7 +52,7 @@ const producers = [
     }
   },
   {
-    name: "TWEEKTNE",
+    name: "TWEEKTUNE",
     image: tweekTunes,
     row: 1,
     position: 3,
