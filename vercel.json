@@ -7,17 +7,18 @@
   ],
   "redirects": [
     {
-      "source": "https://onmygrind.com/(.*)",
+      "source": "/(.*)",
+      "has": [
+        { "type": "host", "value": "onmygrind.com" }
+      ],
       "destination": "https://onmygrind.agency/$1",
       "permanent": true
     },
     {
-      "source": "https://omgagency.com/(.*)",
-      "destination": "https://onmygrind.agency/$1",
-      "permanent": true
-    },
-    {
-      "source": "http://omgagency.com/(.*)",
+      "source": "/(.*)",
+      "has": [
+        { "type": "host", "value": "omgagency.com" }
+      ],
       "destination": "https://onmygrind.agency/$1",
       "permanent": true
     }
