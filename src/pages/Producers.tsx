@@ -709,27 +709,38 @@ const MediaPentagon = () => {
   );
 };
 
-// const ScrollingBanner = () => (
-//   <div className="bg-neutral-800/50 backdrop-blur-sm py-6 overflow-hidden whitespace-nowrap relative border-y border-neutral-700">
-//     <div 
-//       className="animate-scroll inline-flex" 
-//       style={{ 
-//         width: '300%',
-//         transform: 'translateZ(0)', // Force hardware acceleration
-//       }}
-//     >
-//       <span className="text-white text-2xl md:text-3xl font-bold tracking-[0.15em] px-4 md:px-8 uppercase inline-block w-1/3">
-//         REPRESENTING THE BIGGEST IN THE GAME
-//       </span>
-//       <span className="text-white text-2xl md:text-3xl font-bold tracking-[0.15em] px-4 md:px-8 uppercase inline-block w-1/3">
-//         REPRESENTING THE BIGGEST IN THE GAME 
-//       </span>
-//       <span className="text-white text-2xl md:text-3xl font-bold tracking-[0.15em] px-4 md:px-8 uppercase inline-block w-1/3">
-//         REPRESENTING THE BIGGEST IN THE GAME 
-//       </span>
-//     </div>
-//   </div>
-// );
+const ScrollingBanner = () => (
+  <div className="bg-neutral-800/50 backdrop-blur-sm py-4 md:py-6 overflow-hidden whitespace-nowrap relative border-y border-neutral-700">
+    <div
+      className="flex animate-scroll"
+      style={{
+        width: "max-content",
+        minWidth: "100%",
+      }}
+    >
+      {[...Array(2)].map((_, i) => (
+        <span
+          key={i}
+          className="text-white text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold tracking-[0.1em] md:tracking-[0.15em] px-2 sm:px-4 md:px-8 pr-32 sm:pr-48 md:pr-64 uppercase"
+        >
+          REPRESENTING THE BIGGEST IN THE GAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SHINERS WORLD SHINERS WAY
+        </span>
+      ))}
+    </div>
+    <style>
+      {`
+        @keyframes scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-scroll {
+          animation: scroll 40s linear infinite;
+        }
+      `}
+    </style>
+  </div>
+);
+
 
 // Utility to create slugs from producer names
 const slugify = (name: string) =>
@@ -797,7 +808,7 @@ const Producers = () => {
 
   return (
     <PageBackground>
-      {/* <ScrollingBanner /> */}
+      <ScrollingBanner />
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <h1 className="text-5xl font-bold text-white mb-24 text-center tracking-wider">
           OUR PRODUCERS
